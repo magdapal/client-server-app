@@ -1,3 +1,40 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+	<div class="jumbotron">
+	  <div class="quote-area" *ngIf="quoteData">
+	    <h4 class="text-center"><b>Random quote</b></h4>
+	    <p class="text-center">"{{quoteData}}"</p>
+	  </div>
+		<div class="weather-area" *ngIf="weatherData">
+		  <h4 class="text-center"><b>Weather in your localization</b></h4>
+			<p>Pogoda w: <b>{{weatherData.name}}</b></p>
+			<p>temperature: {{weatherData.main.temp}}°C<p>
+			<p>humidity: {{weatherData.main.humidity}}%</p>
+			<p>wind speed: {{weatherData.wind.speed}}m/s</p>
+		</div>
+		<div class="game-area" *ngIf="gameHistory && gameHistory.length > 0">
+			<h4 class="text-center"><b>The game</b></h4>
+			<p>The backend picks random number from 1-1000. The frontend must guess what the number is, sending the types to the backend. The backend suggests whether the number is too small, too big or correct.</p>
+			<ul>
+				<li *ngFor="let action of gameHistory">
+				  <span>{{action.author}} said:</span>
+				  <span>{{action.message}}</span>
+				</li>
+			</ul>
+		</div>
+		<div class="commands-list" *ngIf="commands && commands.length > 0"><p class="text-center"><b>This is the list of command which you can use for see content.</b></p>
+			<ul>
+				<li *ngFor="let command of commands">
+				  {{command.typeCommands}}
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="flex-container start">
+	<div class="row">
+		<div class="flex-item">Type help for see command</div>
+		<div class="flex-item"><input #box (keyup.enter)="onEnter(box.value)"></div>
+	</div>
+</div>
+
+ 
