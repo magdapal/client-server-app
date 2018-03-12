@@ -17,8 +17,8 @@ export class AppComponent {
   urlList: string = environment.apiLink + "/api/commands";
   urlQuote: string = environment.apiLink + "/api/quote";
   urlLocalization: string = "https://geoip.nekudo.com/api/en/";
-  urlWeather: string = environment.apiLink+ "api/weather";
-  urlGame: string = environment.apiLink + "api/game";
+  urlWeather: string = environment.apiLink+ "/api/weather";
+  urlGame: string = environment.apiLink + "/api/game";
 
   commands: string[];
   quoteData: any;
