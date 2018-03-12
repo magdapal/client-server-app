@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiLink: "https://radiant-tor-72717.herokuapp.com"
+  apiLink: "https://type-command-app.herokuapp.com"
 };
 
 
