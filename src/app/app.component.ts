@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import { environment } from '../environments/environment';
+
 
 @Component({
   selector: 'app-root',
@@ -12,11 +14,11 @@ export class AppComponent {
 
   constructor (private http: Http) {}
 
-  urlList: string = "https://localhost:3000/api/commands";
-  urlQuote: string = "https://localhost:3000/api/quote";
+  urlList: string = environment.apiLink + "/api/commands";
+  urlQuote: string = environment.apiLink + "/api/quote";
   urlLocalization: string = "https://geoip.nekudo.com/api/en/";
-  urlWeather: string = "https://localhost:3000/api/weather";
-  urlGame: string = "https://localhost:3000/api/game";
+  urlWeather: string = environment.apiLink+ "api/weather";
+  urlGame: string = environment.apiLink + "api/game";
 
   commands: string[];
   quoteData: any;
