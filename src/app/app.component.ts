@@ -12,11 +12,11 @@ export class AppComponent {
 
   constructor (private http: Http) {}
 
-  urlList: string = "http://localhost:3000/api/commands";
-  urlQuote: string = "http://localhost:3000/api/quote";
+  urlList: string = "https://localhost:3000/api/commands";
+  urlQuote: string = "https://localhost:3000/api/quote";
   urlLocalization: string = "https://geoip.nekudo.com/api/en/";
-  urlWeather: string = "http://localhost:3000/api/weather";
-  urlGame: string = "http://localhost:3000/api/game";
+  urlWeather: string = "https://localhost:3000/api/weather";
+  urlGame: string = "https://localhost:3000/api/game";
 
   commands: string[];
   quoteData: any;
@@ -24,18 +24,18 @@ export class AppComponent {
   minNumber: number = 0;
   maxNumber: number = 1000;
   gameHistory: any[] = [];
- 
+
   getRandomIntInclusive(min, max) {
 	  min = Math.ceil(min);
 	  max = Math.floor(max);
-	  return Math.floor(Math.random() * (max - min + 1)) + min; 
+	  return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   guessNumber() {
 	  const randomInt = this.getRandomIntInclusive(this.minNumber, this.maxNumber);
   	const data = { state: randomInt }
 	  this.http.post(this.urlGame, data).subscribe(
-			data => { 
+			data => {
 			  this.gameHistory.push({author: "frontend", message: randomInt});
 				const message = data.json().message;
 				switch(message) {
@@ -44,19 +44,19 @@ export class AppComponent {
 						console.log(this.gameHistory)
 						debugger
 			    	this.maxNumber = randomInt-1;
-		    	  this.guessNumber();	
-		    	  break			
+		    	  this.guessNumber();
+		    	  break
 					}
 					case "more, please": {
 						this.gameHistory.push({author: "backend", message: message});
 		    	  this.minNumber = randomInt+1;
-			      this.guessNumber();	
-			      break				
+			      this.guessNumber();
+			      break
 					}
 					case randomInt: {
 				    const finalMessage = "great!"
-				    this.gameHistory.push({author: "backend", message: finalMessage});	
-				    break	
+				    this.gameHistory.push({author: "backend", message: finalMessage});
+				    break
 					}
 
 	      }
@@ -100,20 +100,20 @@ export class AppComponent {
 	    const longitude = myLocalization.location.longitude;
 	    const data = {latitude: latitude, longitude: longitude};
 	    this.http.post(this.urlWeather, data).subscribe(
-		    data => { 
+		    data => {
 	        this.weatherData = data.json()
 		    },
 		    err => {
 		    	alert("Something went wrong");
 		    }
 	    )
-	  }); 
+	  });
 	}
 
 	commandGameScript() {
 	  const data = { state: "play" }
 	  this.http.post(this.urlGame, data).subscribe(
-	    data => { 
+	    data => {
 	    	this.gameHistory.push({author: "backend", message: "play"})
 	      this.guessNumber();
 	    },
@@ -123,7 +123,7 @@ export class AppComponent {
 		)
 	}
 
-  onEnter(value: string) { 
+  onEnter(value: string) {
   	this.quoteData = undefined;
   	this.weatherData = undefined;
   	this.gameHistory = [];
@@ -132,22 +132,22 @@ export class AppComponent {
     this.maxNumber = 1000;
 
     switch(value) {
-    	case "help": { 
+    	case "help": {
         this.commandHelpScript();
-	      break; 
-      } 
-		  case "quote": { 
+	      break;
+      }
+		  case "quote": {
         this.commandQuoteScript();
-	      break; 
-		  } 
-		  case "weather": { 
+	      break;
+		  }
+		  case "weather": {
         this.commandWeatherScript();
-	      break; 
-	    } 
-	    case "game": { 
+	      break;
+	    }
+	    case "game": {
         this.commandGameScript();
-	      break; 
-	    } 
+	      break;
+	    }
     }
   }
 }
