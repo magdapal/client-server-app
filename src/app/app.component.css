@@ -31,7 +31,6 @@ input {
   padding: 0 1rem;
 
 }
-
 .commands-list {
 	margin-bottom: 20px;
 }
@@ -40,6 +39,9 @@ input {
 }
 .commands-list, .weather-area, .game-area, .quote-area, .other-area {
   margin-top: 30px;
+ }
+ .welcome-area {
+  margin-top: 60px;
  }
 .quote-area p {
 	font-style: italic;

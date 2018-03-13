@@ -15,7 +15,10 @@ export class AppComponent {
 	constructor (private http: Http) {}
 
 	typeCommand: boolean = true;
-  otherType: boolean = false;
+	otherType: boolean = false;
+	showWelcome: boolean = true;
+  searchValue:string = '';
+
 
   urlList: string = environment.apiLink + "/api/commands";
   urlQuote: string = environment.apiLink + "/api/quote";
@@ -28,7 +31,11 @@ export class AppComponent {
   weatherData: string;
   minNumber: number = 0;
   maxNumber: number = 1000;
-  gameHistory: any[] = [];
+	gameHistory: any[] = [];
+
+	ngOnInit() {
+    this.searchValue = '';
+  }
 
   getRandomIntInclusive(min, max) {
 	  min = Math.ceil(min);
@@ -75,11 +82,11 @@ export class AppComponent {
 
 	commandHelpScript() {
 		this.otherType = false;
+		this.showWelcome = false;
 		this.http.get(this.urlList)
 	  .subscribe(
 	    response => {
 				this.commands = response.json();
-				debugger
 	    },
 	    err => {
 	      alert('Something went wrong');
@@ -89,6 +96,7 @@ export class AppComponent {
 
 	commandQuoteScript() {
 		this.otherType = false;
+		this.showWelcome = false;
     this.http.get(this.urlQuote)
     .subscribe(
     	response => {
@@ -102,6 +110,7 @@ export class AppComponent {
 
 	commandWeatherScript() {
 		this.otherType = false;
+		this.showWelcome = false;
 		this.http.get(this.urlLocalization)
 	  .subscribe(response => {
 	    const myLocalization = response.json();
@@ -121,6 +130,7 @@ export class AppComponent {
 
 	commandGameScript() {
 		this.otherType = false;
+		this.showWelcome = false;
 	  const data = { state: "play" }
 	  this.http.post(this.urlGame, data).subscribe(
 	    data => {
@@ -135,6 +145,7 @@ export class AppComponent {
 
 	otherScript() {
 		this.otherType = true;
+		this.showWelcome = false;
 	}
 
   onEnter(value: string) {
@@ -147,23 +158,29 @@ export class AppComponent {
 
     switch(value) {
     	case "help": {
-        this.commandHelpScript();
+				this.commandHelpScript();
+				this.searchValue = '';
 	      break;
       }
 		  case "quote": {
-        this.commandQuoteScript();
-	      break;
+				this.commandQuoteScript();
+				this.searchValue = '';
+				break;
 		  }
 		  case "weather": {
-        this.commandWeatherScript();
-	      break;
+				this.commandWeatherScript();
+				this.searchValue = '';
+				break;
 	    }
 	    case "game": {
-        this.commandGameScript();
-	      break;
+				this.commandGameScript();
+				this.searchValue = '';
+				break;
 			}
 			default:
-			  this.otherScript();
+				this.otherScript();
+				this.searchValue = '';
+
     }
   }
 }

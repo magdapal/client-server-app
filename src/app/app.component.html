@@ -1,5 +1,6 @@
 <div class="container">
 	<div class="jumbotron">
+		<div class="welcome-area" *ngIf="showWelcome"><h1 class="text-center">Welcome!</h1></div>
 	  <div class="quote-area" *ngIf="quoteData">
 	    <h4 class="text-center"><b>Random quote</b></h4>
 	    <p class="text-center">"{{quoteData}}"</p>
@@ -34,9 +35,9 @@
 </div>
 <div class="flex-container start">
 	<div class="row">
-		<div *ngIf="commands && commands.length > 0" class="flex-item">Type commands from area above</div>
-		<div *ngIf="commands && commands.length < 1 || !commands" class="flex-item">Type help for see command</div>
- 		<div class="flex-item"><input #box (keyup.enter)="onEnter(box.value)"></div>
+		<div *ngIf="commands && commands.length > 0" class="flex-item">Type commands from area above and press enter</div>
+		<div *ngIf="commands && commands.length < 1 || !commands" class="flex-item">Type help an press enter for see list of commands</div>
+ 		<div class="flex-item"><input #box (keyup.enter)="onEnter(box.value)" [(ngModel)]="searchValue"></div>
 	</div>
 </div>
 
