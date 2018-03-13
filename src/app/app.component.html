@@ -3,7 +3,8 @@
 		<div class="welcome-area" *ngIf="showWelcome"><h1 class="text-center">Welcome!</h1></div>
 	  <div class="quote-area" *ngIf="quoteData">
 	    <h4 class="text-center"><b>Random quote</b></h4>
-	    <p class="text-center">"{{quoteData}}"</p>
+			<p class="text-center">"{{quoteData.quote}}"</p>
+			<p class="text-center">{{quoteData.author}}</p>
 	  </div>
 		<div class="weather-area" *ngIf="weatherData">
 		  <h4 class="text-center"><b>Weather in your localization</b></h4>
@@ -14,7 +15,7 @@
 		</div>
 		<div class="game-area" *ngIf="gameHistory && gameHistory.length > 0">
 			<h4 class="text-center"><b>The game</b></h4>
-			<p>The backend picks random number from 1-1000. The frontend must guess what the number is, sending the types to the backend. The backend suggests whether the number is too small, too big or correct.</p>
+			<p>The Backend Bot picks random number from 1-1000. The Frontend Bot must guess what the number is, sending the types to the Backend Bot. The Backend Bot suggests whether the number is too small, too big or correct.</p>
 			<ul>
 				<li *ngFor="let action of gameHistory">
 				  <span>{{action.author}} said:</span>

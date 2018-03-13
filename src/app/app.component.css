@@ -43,6 +43,6 @@ input {
  .welcome-area {
   margin-top: 60px;
  }
-.quote-area p {
+.quote-area p:first-child {
 	font-style: italic;
 }

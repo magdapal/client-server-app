@@ -48,26 +48,24 @@ export class AppComponent {
   	const data = { state: randomInt }
 	  this.http.post(this.urlGame, data).subscribe(
 			data => {
-			  this.gameHistory.push({author: "frontend", message: randomInt});
+			  this.gameHistory.push({author: "Frontend Bot", message: randomInt});
 				const message = data.json().message;
 				switch(message) {
 					case "less, please": {
-						this.gameHistory.push({author: "backend", message: message});
-						console.log(this.gameHistory)
-						debugger
+						this.gameHistory.push({author: "Backend Bot", message: message});
 			    	this.maxNumber = randomInt-1;
 		    	  this.guessNumber();
 		    	  break
 					}
 					case "more, please": {
-						this.gameHistory.push({author: "backend", message: message});
+						this.gameHistory.push({author: "Backend Bot", message: message});
 		    	  this.minNumber = randomInt+1;
 			      this.guessNumber();
 			      break
 					}
 					case randomInt: {
 				    const finalMessage = "great!"
-				    this.gameHistory.push({author: "backend", message: finalMessage});
+				    this.gameHistory.push({author: "Backend Bot", message: finalMessage});
 				    break
 					}
 
@@ -100,7 +98,7 @@ export class AppComponent {
     this.http.get(this.urlQuote)
     .subscribe(
     	response => {
-  	    this.quoteData = response.json().quote;
+				this.quoteData = response.json()
       },
       err => {
       	alert("Something went wrong");
@@ -134,7 +132,7 @@ export class AppComponent {
 	  const data = { state: "play" }
 	  this.http.post(this.urlGame, data).subscribe(
 	    data => {
-	    	this.gameHistory.push({author: "backend", message: "play"})
+	    	this.gameHistory.push({author: "Backend Bot", message: "play"})
 	      this.guessNumber();
 	    },
 		  err => {
