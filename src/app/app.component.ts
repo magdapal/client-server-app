@@ -15,6 +15,7 @@ export class AppComponent {
 	constructor (private http: Http) {}
 
 	typeCommand: boolean = true;
+  otherType: boolean = false;
 
   urlList: string = environment.apiLink + "/api/commands";
   urlQuote: string = environment.apiLink + "/api/quote";
@@ -73,6 +74,7 @@ export class AppComponent {
 	}
 
 	commandHelpScript() {
+		this.otherType = false;
 		this.http.get(this.urlList)
 	  .subscribe(
 	    response => {
@@ -86,6 +88,7 @@ export class AppComponent {
 	}
 
 	commandQuoteScript() {
+		this.otherType = false;
     this.http.get(this.urlQuote)
     .subscribe(
     	response => {
@@ -98,6 +101,7 @@ export class AppComponent {
   }
 
 	commandWeatherScript() {
+		this.otherType = false;
 		this.http.get(this.urlLocalization)
 	  .subscribe(response => {
 	    const myLocalization = response.json();
@@ -116,6 +120,7 @@ export class AppComponent {
 	}
 
 	commandGameScript() {
+		this.otherType = false;
 	  const data = { state: "play" }
 	  this.http.post(this.urlGame, data).subscribe(
 	    data => {
@@ -126,6 +131,10 @@ export class AppComponent {
 		  	alert("Something went wrong");
 		  }
 		)
+	}
+
+	otherScript() {
+		this.otherType = true;
 	}
 
   onEnter(value: string) {
@@ -152,7 +161,9 @@ export class AppComponent {
 	    case "game": {
         this.commandGameScript();
 	      break;
-	    }
+			}
+			default:
+			  this.otherScript();
     }
   }
 }

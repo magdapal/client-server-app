@@ -25,21 +25,22 @@ input {
 	margin-top: 20px;
 }
 .jumbotron {
-  width: 65%;
   height: 300px;
   margin: 0 auto;
   overflow-y: scroll;
   padding: 0 1rem;
+
 }
+
 .commands-list {
 	margin-bottom: 20px;
 }
 .weather-area h4, .game-area h4, .quote-area h4 {
 	margin-bottom: 20px;
 }
-.commands-list, .weather-area, .game-area, .quote-area {
-	margin-top: 30px;
-}
+.commands-list, .weather-area, .game-area, .quote-area, .other-area {
+  margin-top: 30px;
+ }
 .quote-area p {
 	font-style: italic;
 }
