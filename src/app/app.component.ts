@@ -12,7 +12,9 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent {
 
-  constructor (private http: Http) {}
+	constructor (private http: Http) {}
+
+	typeCommand: boolean = true;
 
   urlList: string = environment.apiLink + "/api/commands";
   urlQuote: string = environment.apiLink + "/api/quote";
@@ -74,7 +76,8 @@ export class AppComponent {
 		this.http.get(this.urlList)
 	  .subscribe(
 	    response => {
-		    this.commands = response.json();
+				this.commands = response.json();
+				debugger
 	    },
 	    err => {
 	      alert('Something went wrong');

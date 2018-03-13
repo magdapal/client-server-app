@@ -32,9 +32,9 @@
 </div>
 <div class="flex-container start">
 	<div class="row">
-		<div class="flex-item">Type help for see command</div>
-		<div class="flex-item"><input #box (keyup.enter)="onEnter(box.value)"></div>
+		<div *ngIf="commands && commands.length > 0" class="flex-item">Type commands from area above</div>
+		<div *ngIf="commands && commands.length < 1 || !commands" class="flex-item">Type help for see command</div>
+ 		<div class="flex-item"><input #box (keyup.enter)="onEnter(box.value)"></div>
 	</div>
 </div>
 
- 
