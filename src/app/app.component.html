@@ -8,7 +8,7 @@
 	  </div>
 		<div class="weather-area" *ngIf="weatherData">
 		  <h4 class="text-center"><b>Weather in your localization</b></h4>
-			<p>Pogoda w: <b>{{myLocalization.city}}</b></p>
+			<p>Pogoda w: <b>{{weatherData.name}}</b></p>
 			<p>temperature: {{weatherData.main.temp}}°C<p>
 			<p>humidity: {{weatherData.main.humidity}}%</p>
 			<p>wind speed: {{weatherData.wind.speed}}m/s</p>

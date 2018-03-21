@@ -70,7 +70,6 @@ export class AppComponent {
 					}
 
 	      }
-	      console.log(this.gameHistory)
 		  },
 		  err => {
 		  	alert("Something went wrong");
