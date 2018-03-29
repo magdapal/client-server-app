@@ -18,7 +18,7 @@
   margin: 10px;
   line-height: 20px;
   font-weight: bold;
-  font-size: 2em;
+  font-size: 20px;
   text-align: center;
 }
 input {
@@ -45,4 +45,17 @@ input {
  }
 .quote-area p:first-child {
 	font-style: italic;
+}
+
+@media screen and (max-width: 1024px) {
+  .row {
+    margin: 0;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .flex-item {
+    font-size: 14px;
+  }
 }
